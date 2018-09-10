@@ -1,4 +1,4 @@
-const gameGrid = {
+const gameGridModel = {
     init: function({height, width}) {
         this.visibleHeight = height;
         this.visibleWidth = width;
@@ -47,10 +47,10 @@ const cell = {
         this.isActive = true;
         this._isActiveNextRound = true;
     },
-    _updateActiveStatus: function(grid=gameGrid) {
+    _updateActiveStatus: function(grid=gameGridModel) {
         this.isActive = this._isActiveNextRound;  
     },
-    _updateNextRoundActiveStatus: function(grid=gameGrid) {
+    _updateNextRoundActiveStatus: function(grid=gameGridModel) {
         const activeNeighbors = this.getActiveNeighborCount(this.position, grid);
         if (this.isActive) {
             if (activeNeighbors < 2 || activeNeighbors > 3) {
@@ -62,7 +62,7 @@ const cell = {
             }
         }
     },
-    getActiveNeighborCount: function(position, grid=gameGrid) {
+    getActiveNeighborCount: function(position, grid=gameGridModel) {
         let activeNeighborCount = 0;
         for (let row = position.y - 1; row <= position.y + 1; row++) {
             for (let column = position.x - 1; column <= position.x + 1; column++) {
@@ -78,4 +78,4 @@ const cell = {
 };
 
 module.exports.cell = cell;
-module.exports.gameGrid = gameGrid;
+module.exports.gameGridModel = gameGridModel;
