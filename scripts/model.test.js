@@ -1,28 +1,28 @@
-const main = require('./main');
+const model = require('./model');
 
 test('Initialization of cell produces valid x, y positions', () => {
-    const cell = Object.create(main.cell);
+    const cell = Object.create(model.cell);
     cell.init({x: 4, y: 5});
     expect(cell.position.x).toBe(4);
     expect(cell.position.y).toBe(5);
 });
 
 test('Initialization of game grid produces corresponding visible height and width', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 30, width: 50});
     expect(gameGrid.visibleWidth).toBe(50);
     expect(gameGrid.visibleHeight).toBe(30);
 });
 
 test('Initialization of game grid with visible height 30 and visible width 50 produces total height 92 and total width 152', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 30, width: 50});
     expect(gameGrid.totalWidth).toBe(152);
     expect(gameGrid.totalHeight).toBe(92);
 });
 
 test('Initialization of game grid produces an array with cell object containing accurate position information', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 30, width: 50});
     const sampleCell = gameGrid.model[10][11];
     expect(sampleCell.position.x).toBe(11);
@@ -30,7 +30,7 @@ test('Initialization of game grid produces an array with cell object containing 
 });
 
 test('cell._setActive works', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 30, width: 50});
     const sampleCell = gameGrid.model[10][11];
     expect(sampleCell.isActive).toBeFalsy();
@@ -39,7 +39,7 @@ test('cell._setActive works', () => {
 });
 
 test('cell.getActiveNeighborCount() returns 0 for isolated active cell', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 30, width: 50});
     const sampleCell = gameGrid.model[10][11];
     sampleCell._setActive();
@@ -47,7 +47,7 @@ test('cell.getActiveNeighborCount() returns 0 for isolated active cell', () => {
 });
 
 test('cell.getActiveNeightCount() returns 1 when there is 1 active cell to the right and 2 when another is added to the upper left', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 30, width: 50});
     const sampleCell = gameGrid.model[10][11];
     sampleCell._setActive();
@@ -61,7 +61,7 @@ test('cell.getActiveNeightCount() returns 1 when there is 1 active cell to the r
 
 
 test('cell._updateNextRoundActiveStatus works -- lone active cell toggles off', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 5, width: 5});
     const sampleCell = gameGrid.model[5][5];
     sampleCell._setActive();
@@ -72,7 +72,7 @@ test('cell._updateNextRoundActiveStatus works -- lone active cell toggles off', 
 });
 
 test('cell._updateNextRoundActiveStatus works -- active cell with one neighbor toggles off', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 5, width: 5});
     const sampleCell = gameGrid.model[5][5];
     const rightCell = gameGrid.model[5][6];
@@ -85,7 +85,7 @@ test('cell._updateNextRoundActiveStatus works -- active cell with one neighbor t
 });
 
 test('cell._updateNextRoundActiveStatus works -- active cell with two neighbors stays on', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 5, width: 5});
     const sampleCell = gameGrid.model[5][5];
     const rightCell = gameGrid.model[5][6];
@@ -100,7 +100,7 @@ test('cell._updateNextRoundActiveStatus works -- active cell with two neighbors 
 });
 
 test('cell._updateNextRoundActiveStatus works -- inactive cell with three neighbors toggles on', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 5, width: 5});
     const sampleCell = gameGrid.model[5][5];
     const rightCell = gameGrid.model[5][6];
@@ -117,7 +117,7 @@ test('cell._updateNextRoundActiveStatus works -- inactive cell with three neighb
 });
 
 test('gameGrid.update() successfully toggles a blinker', () => {
-    const gameGrid = Object.create(main.gameGrid);
+    const gameGrid = Object.create(model.gameGrid);
     gameGrid.init({height: 5, width: 5});
     const sampleCell = gameGrid.model[5][5];
     const rightCell = gameGrid.model[5][6];
