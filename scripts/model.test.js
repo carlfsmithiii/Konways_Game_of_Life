@@ -29,12 +29,12 @@ test('Initialization of game grid produces an array with cell object containing 
     expect(sampleCell.position.y).toBe(10);
 });
 
-test('cell._setActive works', () => {
+test('cell.setActive works', () => {
     const gameGrid = Object.create(model.gameGridModel);
     gameGrid.init({height: 30, width: 50});
     const sampleCell = gameGrid.model[10][11];
     expect(sampleCell.isActive).toBeFalsy();
-    sampleCell._setActive();
+    sampleCell.setActive();
     expect(sampleCell.isActive).toBeTruthy();
 });
 
@@ -42,7 +42,7 @@ test('cell.getActiveNeighborCount() returns 0 for isolated active cell', () => {
     const gameGrid = Object.create(model.gameGridModel);
     gameGrid.init({height: 30, width: 50});
     const sampleCell = gameGrid.model[10][11];
-    sampleCell._setActive();
+    sampleCell.setActive();
     expect(sampleCell.getActiveNeighborCount(sampleCell.position, gameGrid)).toBe(0);
 });
 
@@ -50,12 +50,12 @@ test('cell.getActiveNeightCount() returns 1 when there is 1 active cell to the r
     const gameGrid = Object.create(model.gameGridModel);
     gameGrid.init({height: 30, width: 50});
     const sampleCell = gameGrid.model[10][11];
-    sampleCell._setActive();
+    sampleCell.setActive();
     const rightCell = gameGrid.model[10][12];
-    rightCell._setActive();
+    rightCell.setActive();
     expect(sampleCell.getActiveNeighborCount(sampleCell.position, gameGrid)).toBe(1);
     const upperLeftCell = gameGrid.model[9][10];
-    upperLeftCell._setActive();
+    upperLeftCell.setActive();
     expect(sampleCell.getActiveNeighborCount(sampleCell.position, gameGrid)).toBe(2);
 });
 
@@ -64,7 +64,7 @@ test('cell._updateNextRoundActiveStatus works -- lone active cell toggles off', 
     const gameGrid = Object.create(model.gameGridModel);
     gameGrid.init({height: 5, width: 5});
     const sampleCell = gameGrid.model[5][5];
-    sampleCell._setActive();
+    sampleCell.setActive();
     sampleCell._updateNextRoundActiveStatus(gameGrid);
     expect(sampleCell._isActiveNextRound).toBeFalsy();
     sampleCell._updateActiveStatus(gameGrid);
@@ -76,8 +76,8 @@ test('cell._updateNextRoundActiveStatus works -- active cell with one neighbor t
     gameGrid.init({height: 5, width: 5});
     const sampleCell = gameGrid.model[5][5];
     const rightCell = gameGrid.model[5][6];
-    sampleCell._setActive();
-    rightCell._setActive();
+    sampleCell.setActive();
+    rightCell.setActive();
     sampleCell._updateNextRoundActiveStatus(gameGrid);
     expect(sampleCell._isActiveNextRound).toBeFalsy();
     sampleCell._updateActiveStatus(gameGrid);
@@ -90,9 +90,9 @@ test('cell._updateNextRoundActiveStatus works -- active cell with two neighbors 
     const sampleCell = gameGrid.model[5][5];
     const rightCell = gameGrid.model[5][6];
     const leftCell = gameGrid.model[5][4];
-    sampleCell._setActive();
-    rightCell._setActive();
-    leftCell._setActive();
+    sampleCell.setActive();
+    rightCell.setActive();
+    leftCell.setActive();
     sampleCell._updateNextRoundActiveStatus(gameGrid);
     expect(sampleCell._isActiveNextRound).toBeTruthy();
     sampleCell._updateActiveStatus(gameGrid);
@@ -106,9 +106,9 @@ test('cell._updateNextRoundActiveStatus works -- inactive cell with three neighb
     const rightCell = gameGrid.model[5][6];
     const leftCell = gameGrid.model[5][4];
     const topCell = gameGrid.model[4][5];
-    sampleCell._setActive();
-    rightCell._setActive();
-    leftCell._setActive();
+    sampleCell.setActive();
+    rightCell.setActive();
+    leftCell.setActive();
     expect(topCell.isActive).toBeFalsy();
     topCell._updateNextRoundActiveStatus(gameGrid);
     expect(topCell._isActiveNextRound).toBeTruthy();
@@ -123,9 +123,9 @@ test('gameGrid.update() successfully toggles a blinker', () => {
     const rightCell = gameGrid.model[5][6];
     const leftCell = gameGrid.model[5][4];
     const topCell = gameGrid.model[4][5];
-    sampleCell._setActive();
-    rightCell._setActive();
-    leftCell._setActive();
+    sampleCell.setActive();
+    rightCell.setActive();
+    leftCell.setActive();
     
     gameGrid.update(); 
     expect(topCell.isActive).toBeTruthy();

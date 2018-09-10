@@ -43,9 +43,11 @@ const cell = {
             y
         }
     },
-    _setActive: function() {
+    setActive: function() {
+        // debugger;
         this.isActive = true;
         this._isActiveNextRound = true;
+        // console.log("");
     },
     _updateActiveStatus: function(grid=gameGridModel) {
         this.isActive = this._isActiveNextRound;  
@@ -53,9 +55,14 @@ const cell = {
     _updateNextRoundActiveStatus: function(grid=gameGridModel) {
         const activeNeighbors = this.getActiveNeighborCount(this.position, grid);
         if (this.isActive) {
+            // if (this.position.x == 2 && this.position.y == 2) {
+            //     debugger;
+            // }
             if (activeNeighbors < 2 || activeNeighbors > 3) {
                 this._isActiveNextRound = false;
-            } 
+            } else {
+                // this._isActiveNextRound = true;
+            }
         } else {
             if (activeNeighbors === 3) {
                 this._isActiveNextRound = true;
