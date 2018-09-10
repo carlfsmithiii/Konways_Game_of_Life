@@ -30,7 +30,7 @@ function iterate() {
     setTimeout(() => {
         iterateKonway();
         iterate();
-    }, 1000);
+    }, 100);
 }
 
 function iterateKonway() {
@@ -38,8 +38,6 @@ function iterateKonway() {
     for (let row = 0; row < gameModel.model.length; row++) {
         for (let column = 0; column < gameModel.model[row].length; column++) {
             if (_gameCellIsInView(row, column)) {
-                // console.log("Row: " + row + ", Column: " + column);
-                // console.log("shifted: "  + (row - rowShift) + " " + (column - columnShift));
                 if (gameModel.model[row][column].isActive) {
                     orderedCellNodeReferences[row - rowShift][column - columnShift].classList.add("active");
                 } else {
