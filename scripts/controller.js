@@ -12,7 +12,7 @@ cellNodeList.forEach(cell => {
         const viewColumn = clickedCell.dataset.column;
         const modelCell = gameModel.model[Number(viewRow) + rowShift][Number(viewColumn) + columnShift];
         if (modelCell.isActive) {
-            modelCell.setActive();
+            modelCell.setInactive();
             clickedCell.classList.remove("active");
         } else {
             modelCell.setActive();

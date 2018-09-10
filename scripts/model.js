@@ -43,6 +43,10 @@ const cell = {
         this.isActive = true;
         this._isActiveNextRound = true;
     },
+    setInactive: function() {
+        this.isActive = false;
+        this._isActiveNextRound = false;
+    },
     _updateActiveStatus: function(grid=gameGridModel) {
         this.isActive = this._isActiveNextRound;  
     },
