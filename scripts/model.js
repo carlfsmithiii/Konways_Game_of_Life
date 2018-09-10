@@ -29,9 +29,9 @@ const gameGrid = {
     }
 };
 
-function toggleOffCellInView() {};
+// function toggleOffCellInView() {};
 
-function toggleOnCellInView() {};
+// function toggleOnCellInView() {};
 
 const cell = {
 

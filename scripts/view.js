@@ -5,14 +5,16 @@ const dimensions = {
 }
 
 function generateView(dimensions) {
-    for (let i = 0; i < dimensions.height; i++) {
-        const row = document.createElement("div");
-        row.classList.add("row");
-        gameBoard.appendChild(row);
-        for (let i = 0; i < dimensions.width; i++) {
-            const cell = document.createElement("div");
-            cell.classList.add("cell");
-            row.appendChild(cell);
+    for (let row = 0; row < dimensions.height; row++) {
+        const rowNode = document.createElement("div");
+        rowNode.classList.add("row");
+        gameBoard.appendChild(rowNode);
+        for (let column = 0; column < dimensions.width; column++) {
+            const cellNode = document.createElement("div");
+            cellNode.classList.add("cell");
+            cellNode.dataset.row = row;
+            cellNode.dataset.column = column;
+            rowNode.appendChild(cellNode);
         }
     }
 }
