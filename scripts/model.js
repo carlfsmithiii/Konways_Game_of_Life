@@ -73,5 +73,5 @@ const cell = {
     }
 };
 
-module.exports.cell = cell;
-module.exports.gameGridModel = gameGridModel;
+// module.exports.cell = cell;
+// module.exports.gameGridModel = gameGridModel;
